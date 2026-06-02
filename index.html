@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chá de Panela – Isabela & Thiago</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --primary:#7b8fba;--primary-dark:#4a5e8a;--primary-pale:#f0f3fa;
+  --accent:#c9a96e;--accent-light:#f5ead8;
+  --pink:#e8b4c8;--pink-light:#fce8f0;--pink-pale:#fff8fb;
+  --text:#2a2035;--text-mid:#5a4060;--text-light:#9a80a0;
+  --white:#fff;--border:#e8d8ec;--shadow:rgba(74,94,138,0.15);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Lato',sans-serif;background:var(--pink-pale);color:var(--text);line-height:1.7;overflow-x:hidden}
+
+/* HERO */
+.hero{min-height:100vh;background:linear-gradient(160deg,#fce8f4 0%,#e8eeff 60%,#fdf6e8 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 24px;position:relative;overflow:hidden}
+.hero-decor{position:absolute;font-size:32px;opacity:0.5;pointer-events:none;animation:float 4s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.hero-badge{display:inline-block;border:1.5px solid var(--pink);color:var(--text-mid);font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:8px 28px;border-radius:50px;margin-bottom:24px;background:rgba(255,255,255,0.6)}
+.hero-eyebrow{font-family:'Playfair Display',serif;font-style:italic;font-size:22px;color:var(--text-mid);margin-bottom:8px}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(52px,14vw,110px);font-weight:600;color:var(--primary-dark);line-height:1;margin-bottom:4px;letter-spacing:-2px}
+.hero-amp{color:var(--pink);font-style:italic;font-weight:400}
+.hero-date{font-family:'Playfair Display',serif;font-style:italic;font-size:20px;color:var(--text-mid);margin:20px 0 8px}
+.hero-address{font-size:14px;color:var(--text-light);margin-bottom:40px}
+.btn-hero{display:inline-block;background:var(--primary-dark);color:var(--white);font-weight:700;font-size:13px;letter-spacing:2px;text-transform:uppercase;padding:16px 40px;border-radius:50px;text-decoration:none;box-shadow:0 8px 32px var(--shadow);transition:all 0.2s}
+.btn-hero:hover{background:var(--accent);transform:translateY(-2px)}
+
+/* NAV */
+nav{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;padding:0 24px;display:flex;align-items:center;justify-content:center;gap:4px;flex-wrap:wrap}
+nav a{display:inline-block;padding:14px 18px;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-mid);text-decoration:none;border-bottom:2px solid transparent;transition:all 0.2s}
+nav a:hover{color:var(--primary-dark);border-bottom-color:var(--primary-dark)}
+
+/* LISTA */
+.lista-wrap{max-width:1000px;margin:0 auto;padding:60px 24px}
+.lista-header{text-align:center;margin-bottom:48px}
+.lista-label{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--pink);margin-bottom:10px}
+.lista-title{font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,52px);color:var(--text);margin-bottom:12px}
+.lista-title em{font-style:italic;color:var(--primary-dark)}
+.lista-desc{font-size:15px;color:var(--text-mid);max-width:540px;margin:0 auto}
+.divider{width:50px;height:2px;background:linear-gradient(90deg,var(--pink),var(--accent));border-radius:2px;margin:16px auto 0}
+
+/* CATEGORIAS */
+.cat-section{margin-bottom:48px}
+.cat-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;padding-bottom:12px;border-bottom:1.5px solid var(--border)}
+.cat-icon{font-size:28px}
+.cat-title{font-family:'Playfair Display',serif;font-size:24px;font-weight:600;color:var(--primary-dark)}
+
+/* CARDS */
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+.product-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:20px;transition:transform 0.2s,box-shadow 0.2s;position:relative}
+.product-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px var(--shadow)}
+.product-num{position:absolute;top:12px;right:14px;font-size:11px;font-weight:700;color:var(--text-light);letter-spacing:1px}
+.product-emoji{font-size:32px;margin-bottom:10px}
+.product-name{font-family:'Playfair Display',serif;font-size:17px;font-weight:600;color:var(--text);margin-bottom:6px}
+.product-desc{font-size:13px;color:var(--text-mid);margin-bottom:16px;line-height:1.5}
+.product-links{display:flex;flex-direction:column;gap:6px}
+.link-btn{display:flex;align-items:center;gap:7px;padding:9px 14px;border-radius:8px;font-size:12px;font-weight:700;text-decoration:none;transition:opacity 0.2s}
+.link-btn:hover{opacity:0.85}
+.shopee-btn{background:#ee4d2d;color:white}
+.ml-btn{background:#ffe600;color:#333}
+.amazon-btn{background:#ff9900;color:#111}
+
+/* FOOTER */
+footer{background:var(--primary-dark);color:rgba(255,255,255,0.8);text-align:center;padding:48px 24px;font-size:14px;line-height:2}
+footer strong{font-family:'Playfair Display',serif;font-size:28px;color:white;display:block;margin-bottom:8px}
+@media(max-width:600px){.products-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="hero" id="inicio">
+  <span class="hero-decor" style="top:8%;left:5%;animation-delay:0s">🌸</span>
+  <span class="hero-decor" style="top:12%;right:8%;animation-delay:0.6s">🌷</span>
+  <span class="hero-decor" style="bottom:15%;left:7%;animation-delay:1s">🦋</span>
+  <span class="hero-decor" style="bottom:18%;right:6%;animation-delay:0.4s">🌼</span>
+  <span class="hero-decor" style="top:35%;right:3%;animation-delay:1.4s;font-size:20px">💐</span>
+  <span class="hero-decor" style="top:40%;left:3%;animation-delay:0.8s;font-size:22px">🍀</span>
+  <div class="hero-badge">✦ Lista de Presentes ✦</div>
+  <div class="hero-eyebrow">Chá de Panela</div>
+  <h1>Isabela <span class="hero-amp">&</span><br>Thiago</h1>
+  <div class="hero-date">Sábado, 27 de Junho às 19h</div>
+  <div class="hero-address">📍 Rua Maria Cândida dos Santos, Santa Rita, Santa Luzia</div>
+  <a href="#lista" class="btn-hero">Ver Lista de Presentes 🎁</a>
+</div>
+<nav>
+  <a href="#inicio">Início</a>
+  <a href="#lista">Lista de Presentes</a>
+</nav>
+<div id="lista">
+  <div class="lista-wrap">
+    <div class="lista-header">
+      <p class="lista-label">57 sugestões de presentes</p>
+      <h2 class="lista-title">Lista de <em>Presentes</em></h2>
+      <div class="divider"></div>
+      <p class="lista-desc" style="margin-top:16px">Clique em Shopee, Mercado Livre ou Amazon para ver opções de cada presente. Escolha o que preferir! 💕</p>
+    </div>
+    <div class="cat-section"><div class="cat-header"><span class="cat-icon">🍳</span><h3 class="cat-title">Utensílios de Cozinha</h3></div><div class="products-grid"><div class="product-card">
+  <div class="product-num">#1</div>
+  <div class="product-emoji">🥄</div>
+  <div class="product-name">Kit Colheres</div>
+  <div class="product-desc">Colher de arroz, concha para feijão e escumadeira</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=kit+colher+arroz+concha+escumadeira&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/kit-colher-arroz-concha-escumadeira" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=kit+colher+arroz+concha+escumadeira" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#2</div>
+  <div class="product-emoji">🍝</div>
+  <div class="product-name">Kit Pegadores</div>
+  <div class="product-desc">Pegador de massas e de salada</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=kit+pegador+massa+salada&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/kit-pegador-massa-salada" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=kit+pegador+massa+salada" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#3</div>
+  <div class="product-emoji">🔪</div>
+  <div class="product-name">Tábua de Corte</div>
+  <div class="product-desc">Vidro ou polietileno, fácil de higienizar</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=tabua+de+corte+vidro+polietileno&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/tabua-de-corte-vidro-polietileno" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=tabua+de+corte+vidro+polietileno" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#4</div>
+  <div class="product-emoji">🗡️</div>
+  <div class="product-name">Conjunto de Facas</div>
+  <div class="product-desc">Faca de cozinha com diferentes tamanhos e funções</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=conjunto+facas+cozinha&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/conjunto-facas-cozinha" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=conjunto+facas+cozinha" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#5</div>
+  <div class="product-emoji">🍚</div>
+  <div class="product-name">Escorredor de Arroz e Macarrão</div>
+  <div class="product-desc">Escorredor multiuso para arroz e massas</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=escorredor+arroz+macarrao&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/escorredor-arroz-macarrao" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=escorredor+arroz+macarrao" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#6</div>
+  <div class="product-emoji">🪣</div>
+  <div class="product-name">Kit Bacias</div>
+  <div class="product-desc">Bacias de plástico ou inox em kit</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=kit+bacia+plastico+inox+cozinha&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/kit-bacia-plastico-inox" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=kit+bacia+plastico+inox" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#7</div>
+  <div class="product-emoji">🧀</div>
+  <div class="product-name">Porta Presunto e Mussarela</div>
+  <div class="product-desc">Porta frios com tampa para conservar fresquinho</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=porta+presunto+mussarela+frios&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/porta-presunto-mussarela" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=porta+presunto+mussarela" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#8</div>
+  <div class="product-emoji">🎂</div>
+  <div class="product-name">Boleira</div>
+  <div class="product-desc">Boleira com tampa para bolos e tortas</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=boleira+com+tampa&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/boleira-com-tampa" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=boleira+com+tampa" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#9</div>
+  <div class="product-emoji">🍳</div>
+  <div class="product-name">Descanso de Panela</div>
+  <div class="product-desc">Silicone ou madeira para proteger a bancada</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=descanso+panela+silicone+madeira&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/descanso-panela-silicone-madeira" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=descanso+panela+silicone+madeira" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#10</div>
+  <div class="product-emoji">🌶️</div>
+  <div class="product-name">Moedor de Pimenta</div>
+  <div class="product-desc">Moedor manual ou elétrico de pimenta</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=moedor+pimenta+cozinha&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/moedor-pimenta" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=moedor+pimenta" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#11</div>
+  <div class="product-emoji">🧂</div>
+  <div class="product-name">Porta-Temperos</div>
+  <div class="product-desc">Organizador de temperos para cozinha</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=porta+temperos+cozinha+kit&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/porta-temperos-cozinha" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=porta+temperos+cozinha" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#12</div>
+  <div class="product-emoji">🫙</div>
+  <div class="product-name">Galheteiro</div>
+  <div class="product-desc">Galheteiro para azeite, vinagre e condimentos</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=galheteiro+cozinha+azeite&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/galheteiro-cozinha" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=galheteiro+cozinha" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#13</div>
+  <div class="product-emoji">🫒</div>
+  <div class="product-name">Vinagreiro e Azeiteiro</div>
+  <div class="product-desc">Conjunto para azeite e vinagre</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=vinagreiro+azeiteiro+conjunto&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/vinagreiro-azeiteiro" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=vinagreiro+azeiteiro" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#14</div>
+  <div class="product-emoji">🧈</div>
+  <div class="product-name">Manteigueira</div>
+  <div class="product-desc">Manteigueira com tampa para conservar</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=manteigueira+com+tampa&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/manteigueira-com-tampa" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=manteigueira+com+tampa" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#56</div>
+  <div class="product-emoji">🔪</div>
+  <div class="product-name">Amolador de Faca</div>
+  <div class="product-desc">Amolador de facas manual ou elétrico</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=amolador+faca+manual+eletrico&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/amolador-faca" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=amolador+faca" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#57</div>
+  <div class="product-emoji">🍾</div>
+  <div class="product-name">Saca-Rolha Automático</div>
+  <div class="product-desc">Saca-rolha elétrico ou automático para vinhos</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=saca+rolha+automatico+eletrico&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/saca-rolha-automatico" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=saca+rolha+automatico" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div></div></div><div class="cat-section"><div class="cat-header"><span class="cat-icon">🥂</span><h3 class="cat-title">Copos e Taças</h3></div><div class="products-grid"><div class="product-card">
+  <div class="product-num">#15</div>
+  <div class="product-emoji">🥤</div>
+  <div class="product-name">Conjunto de Copos</div>
+  <div class="product-desc">Copos para o dia a dia, resistentes e práticos</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=conjunto+copos+dia+a+dia&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/conjunto-copos-dia-a-dia" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=conjunto+copos+vidro" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#16</div>
+  <div class="product-emoji">🥛</div>
+  <div class="product-name">Taças de Água e Suco</div>
+  <div class="product-desc">Conjunto de taças elegantes para água e suco</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=conjunto+tacas+agua+suco&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/conjunto-tacas-agua-suco" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=conjunto+tacas+agua+suco" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#17</div>
+  <div class="product-emoji">🍷</div>
+  <div class="product-name">Taças de Vinho</div>
+  <div class="product-desc">Conjunto de taças de vinho para ocasiões especiais</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=conjunto+tacas+vinho&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/conjunto-tacas-vinho" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=conjunto+tacas+vinho" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#18</div>
+  <div class="product-emoji">🫗</div>
+  <div class="product-name">Jarra de Suco</div>
+  <div class="product-desc">Jarra de vidro com tampa para sucos e água</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=jarra+suco+vidro+com+tampa&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/jarra-suco-vidro" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=jarra+suco+vidro" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div></div></div><div class="cat-section"><div class="cat-header"><span class="cat-icon">🥘</span><h3 class="cat-title">Servir e Mesa</h3></div><div class="products-grid"><div class="product-card">
+  <div class="product-num">#19</div>
+  <div class="product-emoji">🥘</div>
+  <div class="product-name">Travessas de Vidro Marinex</div>
+  <div class="product-desc">Travessas refratárias Marinex para forno e mesa</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=travessa+vidro+marinex+refratario&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/travessa-vidro-marinex" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=travessa+vidro+marinex" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#20</div>
+  <div class="product-emoji">🥗</div>
+  <div class="product-name">Saladeira Grande</div>
+  <div class="product-desc">Saladeira ampla para servir saladas e pratos frios</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=saladeira+grande+vidro+inox&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/saladeira-grande" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=saladeira+grande" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#21</div>
+  <div class="product-emoji">🍖</div>
+  <div class="product-name">Estaladeira</div>
+  <div class="product-desc">Estaladeira para frituras e carnes</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=estaladeira+cozinha&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/estaladeira-cozinha" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=estaladeira+cozinha" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#22</div>
+  <div class="product-emoji">🍡</div>
+  <div class="product-name">Petisqueira</div>
+  <div class="product-desc">Petisqueira com divisórias para aperitivos</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=petisqueira+com+divisorias&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/petisqueira" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=petisqueira" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#23</div>
+  <div class="product-emoji">🍮</div>
+  <div class="product-name">Conjunto de Sobremesa</div>
+  <div class="product-desc">Taças pequenas para sobremesas e mousses</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=conjunto+tacas+sobremesa+pequenas&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/conjunto-tacas-sobremesa" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=conjunto+tacas+sobremesa" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div></div></div><div class="cat-section"><div class="cat-header"><span class="cat-icon">☕</span><h3 class="cat-title">Café e Chá</h3></div><div class="products-grid"><div class="product-card">
+  <div class="product-num">#24</div>
+  <div class="product-emoji">☕</div>
+  <div class="product-name">Xícaras de Café com Pires</div>
+  <div class="product-desc">Conjunto de xícaras de café com pires elegantes</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=xicaras+cafe+com+pires+conjunto&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/xicaras-cafe-com-pires" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=xicaras+cafe+com+pires" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#25</div>
+  <div class="product-emoji">🫖</div>
+  <div class="product-name">Xícaras de Chá com Pires</div>
+  <div class="product-desc">Conjunto de xícaras de chá com pires</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=xicaras+cha+com+pires+conjunto&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/xicaras-cha-com-pires" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=xicaras+cha+com+pires" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#26</div>
+  <div class="product-emoji">🫗</div>
+  <div class="product-name">Bule de Café e Chá</div>
+  <div class="product-desc">Bule elegante para café ou chá</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=bule+cafe+cha+porcelana&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/bule-cafe-cha" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=bule+cafe+cha" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#27</div>
+  <div class="product-emoji">🥛</div>
+  <div class="product-name">Leiteira</div>
+  <div class="product-desc">Leiteira para aquecer e servir leite</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=leiteira+inox+cozinha&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/leiteira-inox" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=leiteira+inox" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#28</div>
+  <div class="product-emoji">♨️</div>
+  <div class="product-name">Garrafa Térmica</div>
+  <div class="product-desc">Garrafa térmica para café, chá e água quente</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=garrafa+termica+cafe+cha&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/garrafa-termica" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=garrafa+termica" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div></div></div><div class="cat-section"><div class="cat-header"><span class="cat-icon">🍽️</span><h3 class="cat-title">Mesa Posta</h3></div><div class="products-grid"><div class="product-card">
+  <div class="product-num">#29</div>
+  <div class="product-emoji">🍞</div>
+  <div class="product-name">Cesto de Pães</div>
+  <div class="product-desc">Cesto para pães e bolos à mesa</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=cesto+pao+mesa+vime+bambu&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/cesto-pao-mesa" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=cesto+pao+mesa" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#30</div>
+  <div class="product-emoji">🧀</div>
+  <div class="product-name">Queijeira</div>
+  <div class="product-desc">Queijeira com tampa e faca para servir queijos</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=queijeira+com+tampa+vidro&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/queijeira-com-tampa" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=queijeira+com+tampa" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#31</div>
+  <div class="product-emoji">🗒️</div>
+  <div class="product-name">Porta-Guardanapos</div>
+  <div class="product-desc">Porta-guardanapos decorativo para a mesa</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=porta+guardanapos+decorativo&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/porta-guardanapos" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=porta+guardanapos" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#32</div>
+  <div class="product-emoji">🍽️</div>
+  <div class="product-name">Sousplat</div>
+  <div class="product-desc">Conjunto de sousplats para mesa posta elegante</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=sousplat+conjunto+mesa+posta&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/sousplat-conjunto" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=sousplat+conjunto" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#33</div>
+  <div class="product-emoji">🪵</div>
+  <div class="product-name">Lugar Americano</div>
+  <div class="product-desc">Conjunto de lugares americanos para a mesa</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=lugar+americano+conjunto+mesa&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/lugar-americano-conjunto" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=lugar+americano+conjunto" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#34</div>
+  <div class="product-emoji">🍴</div>
+  <div class="product-name">Faqueiro Simples</div>
+  <div class="product-desc">Faqueiro completo para o dia a dia</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=faqueiro+simples+dia+a+dia&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/faqueiro-simples" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=faqueiro+simples" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#35</div>
+  <div class="product-emoji">🎂</div>
+  <div class="product-name">Espátula para Bolo e Torta</div>
+  <div class="product-desc">Espátula para servir bolos e tortas com elegância</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=espatula+bolo+torta+servir&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/espatula-bolo-torta" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=espatula+bolo+torta" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#54</div>
+  <div class="product-emoji">🗒️</div>
+  <div class="product-name">Jogo de Guardanapos de Pano</div>
+  <div class="product-desc">Jogo de guardanapos de tecido para mesa posta</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=guardanapo+pano+tecido+jogo+mesa&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/guardanapo-pano-tecido-jogo" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=guardanapo+pano+tecido+jogo" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div></div></div><div class="cat-section"><div class="cat-header"><span class="cat-icon">🗂️</span><h3 class="cat-title">Organização</h3></div><div class="products-grid"><div class="product-card">
+  <div class="product-num">#36</div>
+  <div class="product-emoji">🫙</div>
+  <div class="product-name">Potes Herméticos</div>
+  <div class="product-desc">Conjunto de potes herméticos em vários tamanhos</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=potes+hermeticos+conjunto+varios+tamanhos&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/potes-hermeticos-conjunto" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=potes+hermeticos+conjunto" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#37</div>
+  <div class="product-emoji">❄️</div>
+  <div class="product-name">Potes para Freezer e Micro-ondas</div>
+  <div class="product-desc">Potes de plástico com tampa para freezer e micro-ondas</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=potes+plastico+freezer+microondas&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/potes-freezer-microondas" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=potes+freezer+microondas" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#38</div>
+  <div class="product-emoji">🌾</div>
+  <div class="product-name">Porta-Mantimentos</div>
+  <div class="product-desc">Potes para arroz, feijão, açúcar e mantimentos</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=porta+mantimentos+arroz+feijao+acucar&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/porta-mantimentos-cozinha" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=porta+mantimentos+cozinha" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#39</div>
+  <div class="product-emoji">🗂️</div>
+  <div class="product-name">Organizadores de Gaveta</div>
+  <div class="product-desc">Organizadores para talheres em gavetas</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=organizador+gaveta+talheres+cozinha&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/organizador-gaveta-talheres" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=organizador+gaveta+talheres" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#40</div>
+  <div class="product-emoji">🗑️</div>
+  <div class="product-name">Lixeira de Chão para Cozinha</div>
+  <div class="product-desc">Lixeira com tampa para cozinha</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=lixeira+chao+cozinha+com+tampa&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/lixeira-cozinha-com-tampa" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=lixeira+cozinha+com+tampa" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#41</div>
+  <div class="product-emoji">🍎</div>
+  <div class="product-name">Fruteira de Mesa</div>
+  <div class="product-desc">Fruteira decorativa para bancada ou mesa</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=fruteira+mesa+decorativa&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/fruteira-mesa" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=fruteira+mesa" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#42</div>
+  <div class="product-emoji">🧂</div>
+  <div class="product-name">Potes para Condimentos</div>
+  <div class="product-desc">Potes pequenos para sal, açúcar e condimentos</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=potes+condimentos+sal+acucar&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/potes-condimentos" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=potes+condimentos+cozinha" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#43</div>
+  <div class="product-emoji">💧</div>
+  <div class="product-name">Garrafa de Água de Vidro</div>
+  <div class="product-desc">Garrafa de vidro com tampa para geladeira</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=garrafa+vidro+agua+geladeira&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/garrafa-vidro-agua-geladeira" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=garrafa+vidro+agua+geladeira" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#44</div>
+  <div class="product-emoji">🍱</div>
+  <div class="product-name">Vasilhas com Tampa para Sobras</div>
+  <div class="product-desc">Vasilhas práticas com tampa para guardar sobras</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=vasilha+tampa+sobras+alimentos&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/vasilha-tampa-sobras" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=vasilha+tampa+sobras" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div></div></div><div class="cat-section"><div class="cat-header"><span class="cat-icon">🧹</span><h3 class="cat-title">Limpeza e Proteção</h3></div><div class="products-grid"><div class="product-card">
+  <div class="product-num">#45</div>
+  <div class="product-emoji">🧤</div>
+  <div class="product-name">Luva Térmica</div>
+  <div class="product-desc">Pegador de panela em silicone resistente ao calor</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=luva+termica+pegador+panela+silicone&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/luva-termica-silicone-cozinha" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=luva+termica+silicone+cozinha" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#46</div>
+  <div class="product-emoji">🧻</div>
+  <div class="product-name">Pano de Prato</div>
+  <div class="product-desc">Kit com 6 ou mais panos de prato de algodão</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=pano+de+prato+kit+6+algodao&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/pano-prato-kit-algodao" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=pano+de+prato+kit+algodao" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#47</div>
+  <div class="product-emoji">🧹</div>
+  <div class="product-name">Flanelas de Limpeza</div>
+  <div class="product-desc">Kit de flanelas multiuso para limpeza doméstica</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=flanela+limpeza+kit+multiuso&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/flanela-limpeza-kit" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=flanela+limpeza+kit" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#48</div>
+  <div class="product-emoji">🟫</div>
+  <div class="product-name">Tapete</div>
+  <div class="product-desc">Tapete para cozinha ou banheiro antiderrapante</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=tapete+cozinha+banheiro+antiderrapante&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/tapete-cozinha-banheiro" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=tapete+cozinha+antiderrapante" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div></div></div><div class="cat-section"><div class="cat-header"><span class="cat-icon">🏠</span><h3 class="cat-title">Casa e Lavanderia</h3></div><div class="products-grid"><div class="product-card">
+  <div class="product-num">#49</div>
+  <div class="product-emoji">🪣</div>
+  <div class="product-name">Balde Plástico</div>
+  <div class="product-desc">Balde plástico resistente para uso doméstico</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=balde+plastico+domestico&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/balde-plastico" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=balde+plastico+domestico" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#50</div>
+  <div class="product-emoji">👕</div>
+  <div class="product-name">Varal de Chão</div>
+  <div class="product-desc">Varal de chão dobrável e prático</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=varal+chao+dobravel&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/varal-chao-dobravel" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=varal+chao+dobravel" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#51</div>
+  <div class="product-emoji">🧺</div>
+  <div class="product-name">Cesto de Roupa Suja</div>
+  <div class="product-desc">Cesto para roupas sujas com tampa</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=cesto+roupa+suja+com+tampa&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/cesto-roupa-suja" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=cesto+roupa+suja" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#52</div>
+  <div class="product-emoji">🪝</div>
+  <div class="product-name">Cabides de Madeira</div>
+  <div class="product-desc">Kit de cabides de madeira para roupas</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=cabide+madeira+kit&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/cabide-madeira-kit" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=cabide+madeira+kit" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#53</div>
+  <div class="product-emoji">🧹</div>
+  <div class="product-name">Pá de Lixo e Vassoura</div>
+  <div class="product-desc">Kit vassoura e pá de lixo para limpeza do lar</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=kit+vassoura+pa+lixo&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/kit-vassoura-pa-lixo" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=kit+vassoura+pa+lixo" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div><div class="product-card">
+  <div class="product-num">#55</div>
+  <div class="product-emoji">🚿</div>
+  <div class="product-name">Conjunto para Banheiro</div>
+  <div class="product-desc">Kit banheiro com porta-sabonete, porta-escova e acessórios</div>
+  <div class="product-links">
+    <a href="https://shopee.com.br/search?keyword=conjunto+acessorios+banheiro+kit&rating_filter=4" target="_blank" class="link-btn shopee-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 17.5h-9a1 1 0 010-2h9a1 1 0 010 2zm1-4h-11a1 1 0 010-2h11a1 1 0 010 2zm-2-4H8.5a1 1 0 010-2h7a1 1 0 010 2z"/></svg>
+      Shopee
+    </a>
+    <a href="https://lista.mercadolivre.com.br/conjunto-acessorios-banheiro" target="_blank" class="link-btn ml-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Mercado Livre
+    </a>
+    <a href="https://www.amazon.com.br/s?k=conjunto+acessorios+banheiro" target="_blank" class="link-btn amazon-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39.032.287.304-.987 2.35-3.26 4.398-6.822 5.146-3.296.7-6.542.124-9.74-1.726-.328-.197-.357-.426-.098-.62l5.23-4.13 .065.048-9.95 7.858a.343.343 0 01-.063.028C.049 25.79-.017 23.915.045 18.02z"/></svg>
+      Amazon
+    </a>
+  </div>
+</div></div></div>
+  </div>
+</div>
+<footer>
+  <strong>Isabela & Thiago 💍</strong>
+  Chá de Panela · 27 de Junho às 19h<br>
+  Rua Maria Cândida dos Santos, Santa Rita, Santa Luzia
+</footer>
+</body>
+</html>
